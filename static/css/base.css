@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Pacifico&display=swap');
+
+/* general colours for the styling of the site ---------
+#bbdef0 - light blue
+#00a6a6 - turquoise
+#ffea81 - yellow
+#f49f0a - gold orange
+#f08700 - deep orange 
+*/
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    background-color: #fafafa;
+}
+
+/* general styling for whole site */ 
+.logo-font {
+    font-family: 'Pacifico', sans-serif;
+    color: #00a6a6;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.general-text {
+    font-family: 'Alata', sans-serif;
+    color: rgb(75, 71, 71);
+    text-decoration: none;
+}
+
+.general-text-add {
+    font-family: 'Alata', sans-serif;
+    color: rgb(133, 129, 129);
+    text-decoration: none;
+}
+.general-padding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+hr {
+    width: 25px; 
+    margin-top: 15px; 
+    margin-bottom: 15px;
+}
+
+i {
+    color: #ffea81;
+    border: none;
+}
+
+footer {
+    background-color: #f3f3f3;
+    min-height: 35px;
+    padding: 10px;
+    margin-top: 50px;
+    bottom: 0;
+    position: relative;
+    width:100%;
+}
+
+/* ----------------------------------------------------------nav */
+.navbar {
+    z-index: 1;
+    background-color: #f3f3f3;
+
+}
+
+.dropdown-item:hover {
+    background-color: #ebeff1;
+    color: #00a6a6;
+    font-family: 'Alata', sans-serif;
+}
+
+.mini-nav-style {
+    z-index: 3;
+}
+
+/* --------------------------------------------------------------- imagery on home page*/
+
+.header-container {
+    margin: 50px 0;
+}
+
+.home-container {
+    position: relative;
+    max-height: 500px;
+}
+
+video {
+    margin: 20px 0;
+    padding: 0;
+    z-index: -5;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.jumbotron {
+    position: relative;
+    width: auto;
+    height: 400px;
+    opacity: 75%;
+}
+
+.travel-now-button {
+    font-family: 'Pacifico', sans-serif;
+    color: #00a6a6ad;
+    z-index: 2;
+    width: 25%;
+}
+
+.travel-now-button:hover {
+    font-family: 'Pacifico', sans-serif;
+    background-color: #00a6a6ad;
+    color: #fafafa;
+    z-index: 2;
+}
+
+.price-text,
+.account-text {
+    color: #00a6a6;
+    text-decoration: none;
+}
+
+.price-text:hover,
+.account-text:hover {
+    color: #0a7575;
+    text-decoration: none;
+}
+
+/* ------------------------------------------card styles */
+
+.card-img-top {
+    height: 200px;
+}
+
+.card-title {
+    color: #00a6a6;
+    text-decoration: none;
+}
+
+.edit-btn {
+    color: #a7d9f1;
+    margin-top: 10px;
+}
+.edit-btn:hover {
+    color: #6ab3d4;
+    margin-top: 10px;
+}
+
+.delete-btn {
+    color: #f7ac4b;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    color: #f08700;
+}
+
+button,
+.add-btn {
+    background-color: #ebeff1;
+    color: #00a6a6;
+}
+
+button,
+.add-btn:hover {
+    background-color: #00a6a6;
+    color: #ebeff1;
+}
+
+.search-btn {
+    background-color: #f3f3f3; 
+}
+
+.search-btn:hover {
+    background-color: #f8f0c6;
+    color: white;
+}
+
+.remove-item {
+    color: #f08700;
+}
+
+.update-item {
+    color: #00a6a6;
+}
+
+/* -------------------------------------------------packages page styles */
+
+.pagination {
+    margin-top: 50px;
+}
+
+.pagination-colors {
+    text-decoration: none;
+}
+
+/* -------------------------------------------------single page styles */
+
+.card-img {
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+.form-row {
+    align-items: right;
+}
+
+.package-description {
+    padding: 1.5rem;
+}
+
+
+.empty-cart {
+    margin-left: 25px;
+    margin-bottom: 25px;
+}
+
+.alert-banner {
+    background-color: #00a6a6;
+    color: #fafafa;
+    width: 100%;
+}
+
+/*-----------------------------------------scroll button */
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #f3f3f3;
+    color: #ffea81;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#myBtn:hover {
+    background-color: #f3f3f3;
+    color: #ffea81;
+}
+
+/* ----------------------------------------------------------- toast styles */ 
+
+.toast {
+    margin-left: 20px;
+    color: rgb(133, 129, 129);
+    border-color: #a7d9f1;
+    float: right;
+}
+
+.toast-warning,
+.arrow-warning {
+    color: #f08700;
+}
+
+.toast-success,
+.arrow-success {
+    color: #00a6a6;
+}
+    
+.toast-info,
+.arrow-info {
+    color: #a7d9f1;
+}
+
+.bg-info,
+.bg-success,
+.bg-error,
+.bg-danger {
+    background-color: #f3f3f3;
+}
+
+/* --------------------------------------------------------------- alternative view for media */
+
+@media(min-width: 400px) {
+    .logo-font {
+        font-family: 'Pacifico', sans-serif;
+        color: #00a6a6;
+        font-size: 3em;
+        text-decoration: none;
+        margin-bottom: 25px;
+    }
+    .jumbotron {
+        margin-bottom: 0px;
+    }
+    .home-container {
+        height: 500px;
+        margin-top: 100px;
+        margin-bottom: 25px;
+    }
+    video{
+        min-width: 100%;
+    }
+    hr {
+        width: 50px; 
+        margin-top: 30px; 
+        margin-bottom: 30px;
+    }
+    footer {
+        margin-top: 200px;
+        height: 150px;
+    }
+    /*
+}

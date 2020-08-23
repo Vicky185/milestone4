@@ -1,0 +1,39 @@
+<div class="collapse navbar-collapse general-text text-center" id="main-nav">
+    <ul class="navbar-nav w-auto mx-auto">
+        <li class="nav-item dropdown">
+            <a class="font-weight-bold nav-link" href="#" id="all-packages-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Available Packages
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="all-packages-link">
+                <a href="{% url 'packages' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'packages' %}?sort=rating&direction=desc" class="dropdown-item">By Rating</a>
+                <a href="{% url 'packages' %}?sort=category&direction=asc" class="dropdown-item">By Category</a>
+                <a href="{% url 'packages' %}" class="dropdown-item">All Packages</a>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="general-text font-weight-bold nav-link" href="#" id="all-categories-link" data-toggle="dropdown" aria-labelledby="categories-link">Types of Holiday </a>
+            <div class="dropdown-menu border-0" aria-labelledby="categories-link">
+                <a href="{% url 'packages' %}?category=beach" class="dropdown-item" aria-haspopup="true" aria-expanded="false">
+                    Beach 
+                </a>
+                <a  href="{% url 'packages' %}?category=party" class="dropdown-item" aria-haspopup="true" aria-expanded="false">
+                    Party 
+                </a>
+                <a href="{% url 'packages' %}?category=ski" class="dropdown-item" aria-haspopup="true" aria-expanded="false">
+                    Ski 
+                </a>
+                <a href="{% url 'packages' %}?category=culture" class="dropdown-item" aria-haspopup="true" aria-expanded="false">
+                    Cultural 
+                </a>
+                <a href="{% url 'packages' %}?category=safari" class="dropdown-item" aria-haspopup="true" aria-expanded="false">
+                Safari 
+                </a>
+                <a href="{% url 'packages' %}?category=city" class="dropdown-item" aria-haspopup="true" aria-expanded="false">
+                City Break 
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>

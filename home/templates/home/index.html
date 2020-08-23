@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+
+   <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+        
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="home-container callout-container">
+        <!-- Callout -->
+        <div class="col-12 callout jumbotron text-center">
+            <h3 class="display-4 logo-font">It's time for a trip...</h3>
+            <hr>
+            <a class="btn btn-light travel-now-button btn btn-lg rounded-0 text-center justify-content-center" href="{% url 'packages' %}"> Take a look now </a>
+        </div>
+        <div>
+            <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                <source src="{{ MEDIA_URL}}beachbg.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

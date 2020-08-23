@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bag_tools %}
+
+{% block page_header %}
+    <div class="containr header-container">
+        <div class="row">
+            <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4"> Shopping Cart </h2>
+            <hr>
+            </div>
+        </div>
+
+        <div class="row general-text general-padding">
+            <div class="col-12 general-text">
+                {% if cart_items %}
+                    <div class="table-responsive rounded">
+                        <table class="table table-sm table-borderless general-padding">
+                            <thead class="general-text">
+                                <tr>
+                                    <th scope="col">Package Info</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Subtotal</th>
+                                </tr>
+                            </thead>
+                            {% for item in cart_items %}
+                                <tr>
+                                    <td class="p-3 w-25">
+                                    {% if item.package.image_url %}
+                                        <img class="img-fluid rounded" src="{{ item.package.image_url }}" alt="{{ item.package.name }}">
+                                    {% else %}
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}no_image.png" alt="{{ item.package.name }}">
+                                    {% endif %}
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0"><strong>{{ item.package.name }}</strong></p>
+                                        <p class="my-0 small text-muted">SKU: {{ item.package.sku|upper }}</p>
+                                    </td>
+                                    <td class="py-3 w-25">
+                                        <p class="my-0">{{ item.quantity }}</p>
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0">£{{ item.package.price }}</p>
+                                    </td>
+                                    <td class="py-3 w-25">
+                                        <form class="form update-form" method="POST" action="{% url 'adjust_cart' item.item_id %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <button class="decrement-qty btn btn-sm btn-black rounded-0" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                        <span>
+                                                            <i class="fas fa-minus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <input class="form-control form-control-sm qty_input" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="20" data-item_id="{{ item.item_id }}">
+                                                <div class="input-group-append">
+                                                    <button class="increment-qty btn btn-sm btn-black rounded-0" data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                        <span>
+                                                            <i class="fas fa-plus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                        <a class="update-link btn update-item text-info"><small> Update</small></a>
+                                        <a class="float-right btn remove-item" id="remove_{{ item.item_id}}" href=""><small> Remove</small></a>
+                                    </td>
+                                    <td class="py-3">
+                                        <p class="my-0">£{{ item.package.price | calc_subtotal:item.quantity }}</p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="5" class="pt-5 text-right">
+                                    <h6><strong>Cart Total: £{{ total|floatformat:2 }}</strong></h6>
+                                    <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="text-right">
+                                    <a href="{% url 'packages' %}" class="btn delete-btn rounded-0 btn-lg">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </span>
+                                        <span class="text-uppercase">Keep Looking...</span>
+                                    </a>
+                                    <a href="{% url 'checkout' %}" class="btn add-btn rounded-0 btn-lg">
+                                        <span class="text-uppercase">Secure Checkout</span>
+                                        <span class="icon">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="general-text empty-cart justify-text-center">Your cart is empty.</p>
+                    <a href="{% url 'packages' %}" class="btn delete-btn rounded-0 btn-lg empty-cart">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Keep Looking...</span>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include '../packages/includes/quantity_input_script.html' %}
+
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/shoppingcart/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
+
+{% endblock %}
